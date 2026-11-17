@@ -1,0 +1,26 @@
+
+name: AZ400 Secrets Demo
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify-secret:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Verify secret availability
+        shell: bash
+        env:
+          DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+        run: |
+          if [ -n "$DB_PASSWORD" ]; then
+            echo "Database secret is available."
+            echo "Secret value was not displayed."
+          else
+            echo "Database secret is missing."
+            exit 1
+          fi
