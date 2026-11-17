@@ -1,0 +1,20 @@
+
+trigger:
+  - main
+
+pr:
+  - main
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+  - checkout: self
+
+  - script: |
+      echo "Source code retrieved from GitHub"
+      echo "Branch: $(Build.SourceBranchName)"
+      test -f README.md
+      echo "Repository validation passed"
+    displayName: "Validate GitHub Repository"
+  
