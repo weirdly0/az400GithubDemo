@@ -23,7 +23,7 @@ jobs:
           dotnet-version: '10.0.x'
 
       - name: Restore Dependencies
-        run: dotnet restore Az400Demo/Az400Demo.csproj
+        run: dotnet restore az400GithubDemo/Az400Demo.csproj
 
       - name: Build Application
-        run: dotnet build Az400Demo/Az400Demo.csproj --configuration Release --no-restore
+        run: dotnet build az400GithubDemo/Az400Demo.csproj --configuration Release --no-restore
