@@ -1,0 +1,29 @@
+name: dotnet Build
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v7
+
+      - name: Set Up .NET
+        uses: actions/setup-dotnet@v6
+        with:
+          dotnet-version: '10.0.x'
+
+      - name: Restore Dependencies
+        run: dotnet restore Az400Demo/Az400Demo.csproj
+
+      - name: Build Application
+        run: dotnet build Az400Demo/Az400Demo.csproj --configuration Release --no-restore
